@@ -11,14 +11,17 @@ public class Auto_Jump : MonoBehaviour {
 	void Start(){
 		alive = true;
 		hRange =  Random.Range(200f,250f);
-		vRange =  Random.Range(100f, 150f);
+		vRange =  Random.Range(50f,150f);
 	}
 
 	void FixedUpdate () {
+		Vector2 screenPos = Camera.main.WorldToScreenPoint(transform.position);
 		if(alive){
 				InvokeRepeating("jump", 1f, 6f);
+				if(screenPos.y > Screen.height){
+					Destroy(gameObject);
+				}
 		}else {
-			Vector2 screenPos = Camera.main.WorldToScreenPoint(bird.transform.position);
 			if(screenPos.y < 0){
 				Destroy(gameObject);
 			}
@@ -27,7 +30,7 @@ public class Auto_Jump : MonoBehaviour {
 
 	void jump(){
 		GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-		GetComponent<Rigidbody2D>().AddForce(new Vector2(250,150));
+		GetComponent<Rigidbody2D>().AddForce(new Vector2(hRange,vRange));
 	}
 
 	void OnCollisionEnter2D(Collision2D other){
