@@ -5,13 +5,11 @@ using UnityEngine;
 public class MusicController : MonoBehaviour {
 	private static bool alreadyPlayed = false;
 	private AudioSource _audio;
-	public AudioClip music;
 
 	// Use this for initialization
 	void Start () {
 		if(!alreadyPlayed){
 			_audio = GetComponent<AudioSource>();
-			music = _audio.clip;
 			_audio.Play();
 			alreadyPlayed = true;
 		}
