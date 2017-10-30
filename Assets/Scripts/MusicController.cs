@@ -15,11 +15,11 @@ public class MusicController : MonoBehaviour {
 			_audio.Play();
 			alreadyPlayed = true;
 		}
-		DontDestroyOnLoad(GetComponent<MusicController>());
 	}
 
 	public void toggleMusic(){
 		// Check if music is already playing...
+		Debug.Log("alreadyPlayed?" + alreadyPlayed);
 		if(_audio.isPlaying){
 			_audio.Pause();
 		}else{
