@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour {
 	public Vector2 velocity = new Vector2(-1,0);
-	public float range;
-
+	
+	private float range;
 	private Rigidbody2D rb;
+
+	static int score;
 
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
@@ -20,5 +22,9 @@ public class Obstacle : MonoBehaviour {
 		if(!Player.alive){
 			rb.velocity = Vector2.zero;
 		}
+	}
+
+	void OnTriggerEnter2D(Collider2D other){
+		Debug.Log("Score count");
 	}
 }
