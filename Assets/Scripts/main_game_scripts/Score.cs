@@ -16,6 +16,8 @@ public class Score : MonoBehaviour {
 	void Start () {
 		scoreBox = Instantiate(scoreBox, new Vector3(0, 150, 0), transform.rotation);
 		scoreBox.transform.SetParent(canvas.transform, false);
+		scoreBox.GetComponent<RectTransform>().localScale = new Vector3(.5f, .5f, 1);
+		
 	}
 	
 	void Update() {

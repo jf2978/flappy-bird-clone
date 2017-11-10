@@ -48,5 +48,6 @@ public class Player : MonoBehaviour {
 	void restart(){
 		Scene s = SceneManager.GetActiveScene();
 		SceneManager.LoadScene(s.name);
+		Score.scoreCount = 0;
 	}
 }
