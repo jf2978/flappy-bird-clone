@@ -5,19 +5,23 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour {
 	// Public variables => Can be accessed via Inspector
 	public Vector2 vertical = new Vector2(0,175);
+	private AudioSource[] sounds;
 	private AudioSource jumpSound;
+	private AudioSource dieSound;
 
+	void Start(){
+		sounds = GetComponents<AudioSource>();
+		jumpSound = sounds[0];
+		dieSound = sounds[1];
+	}
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
 		if(Input.GetButtonDown("Jump")){
 			GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 			GetComponent<Rigidbody2D>().AddForce(vertical);
-			jumpSound = GetComponent<AudioSource>();
 			jumpSound.Play();
 		}
-		Debug.Log(this.transform.position);
 		Vector2 screenPosition = Camera.main.WorldToScreenPoint (transform.position);
-		Debug.Log(screenPosition);
 		if(screenPosition.y > Screen.height || screenPosition.y < 0){
 			die();
 		}
@@ -27,6 +31,12 @@ public class Player : MonoBehaviour {
 	}
 
 	void die(){
+		dieSound.Play();
+		GetComponent<Animator>().enabled = false;
+		Invoke("restart", .5f);
+	}
+
+	void restart(){
 		Scene s = SceneManager.GetActiveScene();
 		SceneManager.LoadScene(s.name);
 	}
