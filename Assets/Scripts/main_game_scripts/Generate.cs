@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class Generate : MonoBehaviour {
 	public GameObject pipes;
-	public float startTime = .5f;
-	public float delayTime = 1f;
 	
-	public static int score;
+	private float startTime = 1f;
+	private float delayTime = 1.5f;
 
 	// Use this for initialization
 	void Start () {
-		score = 0;
 		InvokeRepeating("CreateObstacle", startTime, delayTime);
 	}
 	
@@ -20,9 +18,5 @@ public class Generate : MonoBehaviour {
 		if(Player.alive){
 			Instantiate(pipes);
 		}
-	}
-
-	void displayScore(){
-		
 	}
 }
