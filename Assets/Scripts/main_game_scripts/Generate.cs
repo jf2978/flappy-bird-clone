@@ -14,6 +14,8 @@ public class Generate : MonoBehaviour {
 	
 	// Update is called once per frame
 	void CreateObstacle(){
-		GameObject clonePipe = Instantiate(pipes);
+		if(Player.alive){
+			GameObject clonePipe = Instantiate(pipes);
+		}
 	}
 }
