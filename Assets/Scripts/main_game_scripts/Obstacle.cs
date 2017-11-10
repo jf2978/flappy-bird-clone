@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour {
 	public Vector2 velocity = new Vector2(-1,0);
-	
+
 	private float range;
 	private Rigidbody2D rb;
+	
 
 	void Start () {
 		rb = GetComponent<Rigidbody2D>();
@@ -23,6 +24,7 @@ public class Obstacle : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
+		GetComponent<AudioSource>().Play();
 		Score.scoreCount++;
 	}
 }
